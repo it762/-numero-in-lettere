@@ -20,7 +20,7 @@ def numero_in_lettere():
         # Formatta il risultato
         risultato = f"{lettere} / {parte_decimale:02d}"
         
-        return jsonify({"numero": numero, "lettere": risultato})
+        return jsonify(risultato)
     except Exception as e:
         return jsonify({"errore": str(e)}), 400
 
