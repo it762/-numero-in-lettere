@@ -6,9 +6,11 @@ app = Flask(__name__)
 @app.route('/numero-in-lettere', methods=['GET'])
 def numero_in_lettere():
     numero = request.args.get('numero')
-    try:
+    try:       
         numero = float(numero)
-        lettere = num2words(numero, lang='it')
+        numero_intero = int(numero)
+        lettere = num2words(numero_intero, lang='it')
+
         return jsonify({"numero": numero, "lettere": lettere})
     except Exception as e:
         return jsonify({"errore": str(e)}), 400
