@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, Response
 from num2words import num2words
 
 app = Flask(__name__)
@@ -7,22 +7,16 @@ app = Flask(__name__)
 def numero_in_lettere():
     numero = request.args.get('numero')
     try:
-        # Converti il numero in float
         numero = float(numero)
-        
-        # Separare la parte intera e quella decimale
         parte_intera = int(numero)
         parte_decimale = int(round((numero - parte_intera) * 100))
         
-        # Converti la parte intera in lettere
         lettere = num2words(parte_intera, lang='it')
+        risultato = f"{lettere} / {parte_decimale:02d}"
         
-        # Formatta il risultato
-        risultato = {lettere} / {parte_decimale:02d}
-        
-        return jsonify(risultato)
+        return Response(risultato, mimetype='text/plain')
     except Exception as e:
-        return jsonify({"errore": str(e)}), 400
+        return Response(f"Errore: {str(e)}", status=400, mimetype='text/plain')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
