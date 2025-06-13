@@ -18,7 +18,7 @@ def numero_in_lettere():
         lettere = num2words(parte_intera, lang='it')
         
         # Formatta il risultato
-        risultato = f"{lettere} / {parte_decimale:02d}"
+        risultato = {lettere} / {parte_decimale:02d}
         
         return jsonify(risultato)
     except Exception as e:
