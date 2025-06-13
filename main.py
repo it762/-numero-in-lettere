@@ -12,7 +12,7 @@ def numero_in_lettere():
         parte_decimale = int(round((numero - parte_intera) * 100))
         
         lettere = num2words(parte_intera, lang='it')
-        risultato = f"{lettere} / {parte_decimale:02d}"
+        risultato = f"{lettere}/{parte_decimale:02d}"
         
         return Response(risultato, mimetype='text/plain')
     except Exception as e:
